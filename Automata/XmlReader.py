@@ -2,34 +2,46 @@ import xml.etree.ElementTree as ET
 tree = ET.parse('Automata.xml')
 root = tree.getroot()
 
-alphabet = ['','']
+alphabet = []
 i = 0
-finalstate = ''
-state = ['','']
+finalstate = []
+state = []
 initialState = ''
-transition =[['','',''],
-              ['','',''],
-              ['','','']
-]
+transition =[]
 
 for child in root:
     if child.tag == 'Alphabets':
+        numberOfAlphabets = int(child.get('numberOfAlphabets'))
+        for _ in range(numberOfAlphabets):
+            alphabet.append('')
         for grandchild in child:
             alphabet[i] = grandchild.get('letter')
             i += 1
         i = 0
     elif child.tag == 'States':
+        numberOfStates = int(child.get('numberOfStates'))
+        for _ in range(numberOfStates):
+            state.append('')        
         for grandchild in child:
             if grandchild.tag == 'FinalStates':
+                # print(type(grandchild.get('numberOfFinalStates')))
+                numberOfFinalState = int(grandchild.get('numberOfFinalStates'))
+                for _ in range(numberOfFinalState):
+                    finalstate.append('')
                 for grandson in grandchild:
-                    finalstate = grandson.get('name')
+                    finalstate[i] = grandson.get('name')
+                    i += 1
+                i = 0                
             elif grandchild.tag == 'state':
                 state[i] = grandchild.get('name')
                 i += 1
             elif grandchild.tag == 'initialState':
                 initialState = grandchild.get('name')
-        i = 0
+                i = 0
     elif child.tag == 'Transitions':
+        numberOfTrans = int(child.get('numberOfTrans'))
+        for _ in range(numberOfTrans):
+            transition.append(['','',''])
         for grandchild in child:
             transition[i][0] = grandchild.get('source')
             transition[i][1] = grandchild.get('destination')
@@ -44,7 +56,7 @@ print('States:')
 print(f'state1 = {state[0]}')
 print(f'state2 = {state[1]}')
 print(f'initial State = {initialState}')
-print(f'final State = {finalstate}')
+print(f'final State = {finalstate[0]}')
 print('--------------------------------------')
 print('Transitions:')
 print(f'from \'{transition[0][0]}\' to \'{transition[0][1]}\' with \'{transition[0][2]}\'')
@@ -78,7 +90,7 @@ while True:
                 CurrentState = transition[2][1]
             else:
                 accept = False
-                continue
+                break
     if accept :
         if CurrentState == state[0]:
             print('the input string is not accepted')
