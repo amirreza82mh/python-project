@@ -190,8 +190,8 @@ f(1, 2)
 f(a = 1, b = 2)
 f(1 , b = 2)
 f(b = 1 , a = 2)
-#f(a = 1, 2)
-#f(1 , a = 2)
+# f(a = 1, 2)
+# f(1 , a = 2)
 
 print('----------------')
 
@@ -203,7 +203,7 @@ f(1, 3)
 f(1, 3, 5)
 f(1 , c=9)
 f(b=3, a=1, c=5)
-#f(1, b=2, 3)
+# f(1, b=2, 3)
 
 print('----------------')
 #keyword only argument
@@ -213,7 +213,7 @@ def f(*, a=3):
 
 f()
 f(a=5)
-#f(5)    f() takes 0 positional arguments but 1 was given
+# f(5)    #f() takes 0 positional arguments but 1 was given
 
 print('----------------')
 #var argument
@@ -281,8 +281,8 @@ def f(a, *, b=2, c=3):
 
 f(1)
 f(2, b=3)
-#f(1, 2, c=5)
-#f(1, b=4, 6)
+# f(1, 2, c=5)
+# f(1, b=4, 6)
 
 print('----------------')
 

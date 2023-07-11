@@ -46,7 +46,7 @@ print('\n#####################\n')
 
 #max , min , sum , count
 t = (1 , 2 , 3 , 4 , 5 , 6 , 1 , 1 , 1 , 2 , 2 , 2)
-print(f'length a t : {t}')
+print(f'length a t : {len(t)}')
 print(f'sum of tuple argumant : {sum(t)}')
 print(f'max = {max(t)}')
 print(f'min = {min(t)}')
